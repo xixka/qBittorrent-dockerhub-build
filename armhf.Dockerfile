@@ -1,6 +1,6 @@
 FROM multiarch/debian-debootstrap:armhf-buster
 #定义环境变量
-ENV libtorrent-version=${libtorrent-version}
+ENV libtorrent-version=1.2.12
 
 # 安装编译libtorrent-rasterbar环境
 RUN apt -y update \
