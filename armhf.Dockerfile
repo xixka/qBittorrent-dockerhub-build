@@ -6,6 +6,7 @@ ENV libtorrent-version=1.2.12
 RUN apt -y update \
 &&  apt -y install build-essential zlib1g-dev pkg-config automake libtool libboost-dev libboost-system-dev libboost-chrono-dev libboost-random-dev libssl-dev libgeoip-dev qtbase5-dev qttools5-dev-tools libqt5svg5-dev  \
 &&  apt -y install ruby ruby-dev rubygems build-essential apt-transport-https certificates \
+&&  gem sources -a http://rubygems.org \
 &&  gem  install fpm
 
 # 编译libtorrent-rasterbar
