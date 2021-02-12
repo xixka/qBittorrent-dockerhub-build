@@ -10,9 +10,9 @@ RUN apt -y update \
 RUN gem sources --add http://mirrors.tuna.tsinghua.edu.cn/rubygems/ --remove https://rubygems.org/ && gem install fpm
 
 # 编译libtorrent-rasterbar
-RUN wget https://github.com/arvidn/libtorrent/releases/download/v${libtorrent-version}/libtorrent-rasterbar-${libtorrent-version}.tar.gz \
-&&  tar -xzvf libtorrent-rasterbar-${libtorrent-version}.tar.gz \
-&&  cd libtorrent-rasterbar-${libtorrent-version}/  \
+RUN wget https://github.com/arvidn/libtorrent/releases/download/v$libtorrent-version/libtorrent-rasterbar-$libtorrent-version.tar.gz \
+&&  tar -xzvf libtorrent-rasterbar-$libtorrent-version.tar.gz \
+&&  cd libtorrent-rasterbar-$libtorrent-version/  \
 &&  ./configure --enable-encryption --disable-debug CXXFLAGS="-std=c++17" --with-boost-libdir=/usr/lib/arm-linux-gnueabihf  \
 &&  make -j$(nproc) \
 &&  mkdir -p /tmp/libtorrent-rasterbar \
@@ -26,6 +26,6 @@ RUN fpm -s dir -t deb \
     --description "Development files for libtorrent-rasterbar" \
     --vendor "xixka" \
     -n libtorrent-rasterbar \
-    -v ${libtorrent-version} \
-    -p libtorrent-rasterbar_${libtorrent-version}_armhf.deb \
+    -v $libtorrent-version \
+    -p libtorrent-rasterbar_$libtorrent-version_armhf.deb \
     usr/local
