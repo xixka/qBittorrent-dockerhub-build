@@ -1,6 +1,5 @@
 FROM multiarch/debian-debootstrap:armhf-buster
 #定义环境变量
-ENV libtorrent-version=1.2.12
 
 # 安装编译libtorrent-rasterbar环境
 RUN apt -y update \
@@ -10,9 +9,9 @@ RUN apt -y update \
 &&  gem install fpm
 
 # 编译libtorrent-rasterbar
-RUN wget https://github.com/arvidn/libtorrent/releases/download/v$libtorrent-version/libtorrent-rasterbar-$libtorrent-version.tar.gz \
-&&  tar -xzvf libtorrent-rasterbar-$libtorrent-version.tar.gz \
-&&  cd libtorrent-rasterbar-$libtorrent-version/  \
+RUN wget https://github.com/arvidn/libtorrent/releases/download/v1.2.12/libtorrent-rasterbar-1.2.12.tar.gz \
+&&  tar -xzvf libtorrent-rasterbar-1.2.12.tar.gz \
+&&  cd libtorrent-rasterbar-1.2.12/  \
 &&  ./configure --enable-encryption --disable-debug CXXFLAGS="-std=c++17" --with-boost-libdir=/usr/lib/arm-linux-gnueabihf  \
 &&  make -j$(nproc) \
 &&  mkdir -p /tmp/libtorrent-rasterbar \
@@ -26,6 +25,6 @@ RUN fpm -s dir -t deb \
     --description "Development files for libtorrent-rasterbar" \
     --vendor "xixka" \
     -n libtorrent-rasterbar \
-    -v $libtorrent-version \
-    -p libtorrent-rasterbar_$libtorrent-version_armhf.deb \
+    -v 1.2.12 \
+    -p libtorrent-rasterbar_1.2.12_armhf.deb \
     usr/local
