@@ -5,9 +5,9 @@ ENV libtorrent-version=1.2.12
 # 安装编译libtorrent-rasterbar环境
 RUN apt -y update \
 &&  apt -y install build-essential zlib1g-dev pkg-config automake libtool libboost-dev libboost-system-dev libboost-chrono-dev libboost-random-dev libssl-dev libgeoip-dev qtbase5-dev qttools5-dev-tools libqt5svg5-dev  \
-&&  apt -y install ruby ruby-dev rubygems build-essential apt-transport-https ca-certificates \
-&&  gem sources -a http://rubygems.org \
-&&  gem  install fpm
+&&  apt -y install ruby ruby-dev rubygems build-essential apt-transport-https ca-certificates
+
+RUN gem sources -a http://rubygems.org && gem install fpm
 
 # 编译libtorrent-rasterbar
 RUN wget https://github.com/arvidn/libtorrent/releases/download/v${libtorrent-version}/libtorrent-rasterbar-${libtorrent-version}.tar.gz \
